@@ -5,7 +5,7 @@ create table article(
     article_pic varchar(255) not null,
     article_title varchar(255) not null,
     article_description varchar(5000) not null,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     article_polyuser int not null,
     foreign key (article_polyuser) references polyuser(polyuser_id),
     article_price varchar(255) not null,

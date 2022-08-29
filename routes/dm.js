@@ -3,8 +3,8 @@ const pool = require("../db")
 
 router.get("/", async (req,res) => {
     try {
-        const allArticles = await pool.query("select * from article")
-        res.json(allArticles.rows)
+        const allDms = await pool.query("select * from dm")
+        res.json(allDms.rows)
     }
     catch (err) {
         console.log(err.message)

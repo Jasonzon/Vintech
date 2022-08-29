@@ -16,6 +16,12 @@ app.use(express.json())
 
 app.use("/article", require("./routes/article"))
 
+app.use("/fav", require("./routes/fav"))
+
+app.use("/dm", require("./routes/dm"))
+
+app.use("/polyuser", require("./routes/polyuser"))
+
 /*
 app.get("/*", (req,res) => {
     res.sendFile(path.join(__dirname,"client/build/index.html"))

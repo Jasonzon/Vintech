@@ -10,7 +10,7 @@ function Home() {
         getArticles()
     },[])
 
-    function getArticles() {
+    async function getArticles() {
         const res = await fetch("http://localhost:5500/article", {
             method: "GET"
         })
