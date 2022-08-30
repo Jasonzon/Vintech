@@ -4,8 +4,9 @@ const pool = require("../db")
 router.get("/:from&:to&:bottom&:top", async (req,res) => {
     try {
         const {from,to,bottom,top} = req.params
-        const allDms = await pool.query("select * from dm where (dm_from = $1 and dm_to = $2) or (dm_from = $2 and dm_to = $1)",[from,to])
-        res.json(allDms.rows.filter((dm,index) => bottom <= index <= top))
+        const limit = top-bottom
+        const allDms = await pool.query("select * from dm where (dm_from = $1 and dm_to = $2) or (dm_from = $2 and dm_to = $1) order by dm_id limit $3 offset $4 ",[from,to,limit,bottom])
+        res.json(allDms.rows)
     } catch (err) {
         console.log(err.message)
     }
