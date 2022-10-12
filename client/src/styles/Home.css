@@ -2,3 +2,8 @@
     width:100%;
     padding:1.5rem;
 }
+
+.list {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}

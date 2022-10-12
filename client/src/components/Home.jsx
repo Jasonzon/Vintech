@@ -25,9 +25,15 @@ function Home() {
                 <input name="search" className="search" />
             </div>
             <ul className="list">
-                {articles.map(({}) => 
+                {articles.map(({article_pic, article_title, article_description, created_at, article_polyuser, article_price, article_city}) => 
                     <Article 
-                        
+                        pic={article_pic}
+                        title={article_title}
+                        description={article_description}
+                        created_at={created_at}
+                        polyuser={article_polyuser}
+                        price={article_price}
+                        city={article_city}
                     />
                 )}
             </ul>

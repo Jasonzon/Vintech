@@ -16,8 +16,27 @@
     width:100%;
     gap:3rem;
     margin-right:4rem;
+    margin-left:3rem;
 }
 
 .title {
     margin-top:.9rem;
+}
+
+.nav a {
+    text-decoration: none;
+    color:inherit;
+}
+
+.nav p {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top:.5rem;
+    padding:.3rem;
+    border-radius: 1rem;
+}
+
+.nav p:hover {
+    background-color: #FFF;
+    color:#00B5BC;
 }
