@@ -5,12 +5,6 @@ require("dotenv").config()
 
 const proConfig = process.env.DATABASE_URL
 
-console.log(process.env.PG_USER)
-console.log(process.env.PG_PASSWORD)
-console.log(process.env.PG_DATABASE)
-console.log(process.env.PG_PORT)
-console.log(process.env.PG_HOST)
-
 const pool = //process.env.NODE_ENV !== "production" ? 
 new Pool ({
   user: process.env.PG_USER,

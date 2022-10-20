@@ -1,9 +1,16 @@
 import "../styles/Profil.css"
+import Connection from "./Connection"
+import Register from "./Register"
+import User from "./User"
 
-function Profil() {
+function Profil({user, setUser, connection, setConnection}) {
+
     return (
         <div>
-            profil
+            {!user.polyuser_name ? <> {connection ? 
+                <Connection connection={connection} setConnection={setConnection} user={user} setUser={setUser}/> : 
+                <Register connection={connection} setConnection={setConnection} user={user} setUser={setUser} /> } </> : 
+                <User user={user} setUser={setUser} /> }
         </div>
     )
 }
