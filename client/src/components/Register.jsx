@@ -46,8 +46,8 @@ function Register({connection, setConnection, user, setUser}) {
                 <input required maxLength="20" onChange={(e) => setInputs({mail:inputs.mail, pseudo:e.target.value.replace(/[^a-zA-Z0-9 ]/g,''), password:inputs.password})} value={inputs.pseudo} type="text" id="epseudo" name="epseudo"/><br/>
                 <label>Mot de passe</label><br/>
                 <input required maxLength="50" onChange={(e) => setInputs({mail:inputs.mail, pseudo:inputs.pseudo, password:e.target.value})} value={inputs.password} type="password" id="epassword" name="epassword"/><br/>
-                <button type="submit" onClick={(e) => submit(e)}>S'enregistrer</button>
             </form>
+            <button className="sub" type="submit" onClick={(e) => submit(e)}>S'enregistrer</button>
         </div>
     )
 }

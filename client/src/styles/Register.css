@@ -1,0 +1,23 @@
+.regg {
+    text-align: center;
+    margin-top:10%;
+    font-size: 1.3rem;
+}
+
+.regg > form {
+    display:flex;
+    gap:1rem;
+    white-space: nowrap;
+    margin-top:1.5rem;
+    margin-left: 44.5%;
+    transform:translateX(-50%);
+}
+
+.regg > .connection {
+    margin-left: 50%;
+    transform:translateX(-50%);
+}
+
+.regg > .sub {
+    margin-top:1rem;
+}
