@@ -18,7 +18,7 @@ function Register({connection, setConnection, user, setUser}) {
         const parseRes = await res.json()
         if (parseRes.length === 0) {
             const body = {mail:inputs.mail, name:inputs.pseudo, password:inputs.password}
-            const res2 = await fetch("/polyuser", {
+            const res2 = await fetch("http://localhost:5500/polyuser", {
                 method: "POST",
                 headers: {"Content-Type" : "application/json"},
                 body:JSON.stringify(body)
@@ -40,14 +40,41 @@ function Register({connection, setConnection, user, setUser}) {
                 <button onClick={() => setConnection(true)}>Déjà inscrit ?</button>
             </div>
             <form>
-                <label>Mail</label><br/>
-                <input placeholder={holder} maxLength="100" required onChange={(e) => {setInputs({mail:e.target.value, pseudo:inputs.pseudo, password:inputs.password});setHolder("")}} value={inputs.mail} type="email" id="email" name="email"/><br/>
-                <label>Pseudo</label><br/>
-                <input required maxLength="20" onChange={(e) => setInputs({mail:inputs.mail, pseudo:e.target.value.replace(/[^a-zA-Z0-9 ]/g,''), password:inputs.password})} value={inputs.pseudo} type="text" id="epseudo" name="epseudo"/><br/>
-                <label>Mot de passe</label><br/>
-                <input required maxLength="50" onChange={(e) => setInputs({mail:inputs.mail, pseudo:inputs.pseudo, password:e.target.value})} value={inputs.password} type="password" id="epassword" name="epassword"/><br/>
+                <div>
+                    <label>Mail</label>
+                    <input placeholder={holder} maxLength="100" required onChange={(e) => {setInputs({mail:e.target.value, pseudo:inputs.pseudo, password:inputs.password});setHolder("")}} value={inputs.mail} type="email" id="email" name="email"/>
+                </div>
+                <div>
+                    <label>Pseudo</label>
+                    <input required maxLength="20" onChange={(e) => setInputs({mail:inputs.mail, pseudo:e.target.value.replace(/[^a-zA-Z0-9 ]/g,''), password:inputs.password})} value={inputs.pseudo} type="text" id="epseudo" name="epseudo"/>
+                </div>
+                <div>
+                    <label>Mot de passe</label>
+                    <input required maxLength="50" onChange={(e) => setInputs({mail:inputs.mail, pseudo:inputs.pseudo, password:e.target.value})} value={inputs.password} type="password" id="epassword" name="epassword"/>
+                </div>
+                <div>
+                    <label>Polytech</label>
+                    <select>
+                        <option value="" disabled selected>Choisir une ville</option>
+                        <option className="montpellier" value="Montpellier">Montpellier</option>
+                        <option className="savoie" value="Savoie">Savoie</option>
+                        <option className="marseille" value="Marseille">Marseille</option>
+                        <option className="nice" value="Nice">Nice</option>
+                        <option className="grenoble" value="Grenoble">Grenoble</option>
+                        <option className="lyon" value="Lyon">Lyon</option>
+                        <option className="clermont" value="Clermont">Clermont</option>
+                        <option className="sorbonne" value="Sorbonne">Sorbonne</option>
+                        <option className="saclay" value="Saclay">Saclay</option>
+                        <option className="lille" value="Lille">Lille</option>
+                        <option className="nancy" value="Nancy">Nancy</option>
+                        <option className="tours" value="Tours">Tours</option>
+                        <option className="orleans" value="Orleans">Orleans</option>
+                        <option className="angers" value="Angers">Angers</option>
+                        <option className="nantes" value="Nantes">Nantes</option>
+                    </select>
+                </div>
+                <button className="sub" type="submit" onClick={(e) => submit(e)}>S'enregistrer</button>
             </form>
-            <button className="sub" type="submit" onClick={(e) => submit(e)}>S'enregistrer</button>
         </div>
     )
 }
