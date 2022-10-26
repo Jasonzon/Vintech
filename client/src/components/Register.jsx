@@ -5,7 +5,8 @@ function Register({connection, setConnection, user, setUser}) {
     const [inputs, setInputs] = useState({
         mail:"",
         pseudo:"",
-        password:""
+        password:"",
+        polytech:""
     })
 
     const [holder, setHolder] = useState("")
@@ -17,7 +18,7 @@ function Register({connection, setConnection, user, setUser}) {
         })
         const parseRes = await res.json()
         if (parseRes.length === 0) {
-            const body = {mail:inputs.mail, name:inputs.pseudo, password:inputs.password}
+            const body = {mail:inputs.mail, name:inputs.pseudo, password:inputs.password,polytech:inputs.polytech}
             const res2 = await fetch("http://localhost:5500/polyuser", {
                 method: "POST",
                 headers: {"Content-Type" : "application/json"},
@@ -42,19 +43,19 @@ function Register({connection, setConnection, user, setUser}) {
             <form>
                 <div>
                     <label>Mail</label>
-                    <input placeholder={holder} maxLength="100" required onChange={(e) => {setInputs({mail:e.target.value, pseudo:inputs.pseudo, password:inputs.password});setHolder("")}} value={inputs.mail} type="email" id="email" name="email"/>
+                    <input placeholder={holder} maxLength="100" required onChange={(e) => {setInputs({mail:e.target.value, pseudo:inputs.pseudo, password:inputs.password, polytech:inputs.polytech});setHolder("")}} value={inputs.mail} type="email" id="email" name="email"/>
                 </div>
                 <div>
                     <label>Pseudo</label>
-                    <input required maxLength="20" onChange={(e) => setInputs({mail:inputs.mail, pseudo:e.target.value.replace(/[^a-zA-Z0-9 ]/g,''), password:inputs.password})} value={inputs.pseudo} type="text" id="epseudo" name="epseudo"/>
+                    <input required maxLength="20" onChange={(e) => setInputs({mail:inputs.mail, pseudo:e.target.value.replace(/[^a-zA-Z0-9 ]/g,''), password:inputs.password, polytech:inputs.polytech})} value={inputs.pseudo} type="text" id="epseudo" name="epseudo"/>
                 </div>
                 <div>
                     <label>Mot de passe</label>
-                    <input required maxLength="50" onChange={(e) => setInputs({mail:inputs.mail, pseudo:inputs.pseudo, password:e.target.value})} value={inputs.password} type="password" id="epassword" name="epassword"/>
+                    <input required maxLength="50" onChange={(e) => setInputs({mail:inputs.mail, pseudo:inputs.pseudo, password:e.target.value, polytech:inputs.polytech})} value={inputs.password} type="password" id="epassword" name="epassword"/>
                 </div>
                 <div>
                     <label>Polytech</label>
-                    <select>
+                    <select required onChange={(e) => setInputs({mail:inputs.mail, pseudo:inputs.pseudo, password:inputs.password, polytech:e.target.value})} value={inputs.polytech} type="text" id="epolytech" name="epolytech">
                         <option value="" disabled selected>Choisir une ville</option>
                         <option className="montpellier" value="Montpellier">Montpellier</option>
                         <option className="savoie" value="Savoie">Savoie</option>

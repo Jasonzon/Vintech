@@ -31,6 +31,7 @@ router.get("/mail/:id", async (req,res) => {
 })
 
 router.get("/auth", async (req,res) => {
+    console.log("OKA")
     try {
         const jwtToken = req.header("token")
         const payload = jwt.verify(jwtToken, process.env.jwtSecret)
@@ -42,11 +43,11 @@ router.get("/auth", async (req,res) => {
 
 router.post("/", async (req,res) => {
     try {
-        const {name, mail, password, city} = req.body
+        const {name, mail, password, polytech} = req.body
         const saltRound = 10
         const salt = await bcrypt.genSalt(saltRound)
         const bcryptPassword = await bcrypt.hash(password, salt)
-        const newPolyuser = await pool.query("INSERT INTO polyuser (polyuser_name, polyuser_mail, polyuser_password, polyuser_city) VALUES ($1, $2, $3, $4) RETURNING *", [name, mail, bcryptPassword, city])
+        const newPolyuser = await pool.query("INSERT INTO polyuser (polyuser_name, polyuser_mail, polyuser_password, polyuser_city) VALUES ($1, $2, $3, $4) RETURNING *", [name, mail, bcryptPassword, polytech])
         if (newPolyuser.rows.length === 0) {
             return res.status(403).send("Not Authorized")
         }
