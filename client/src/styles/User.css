@@ -1,0 +1,64 @@
+.user {
+    margin-left:50%;
+    transform: translateX(-50%);
+    text-align: center;
+    margin-top:3rem;
+}
+
+.user button {
+    background-color: #00B5BC;
+    border:2px solid white;
+    font-size: 1.3rem;
+    color:white;
+    padding:.5rem;
+    border-radius: 10px;
+    margin-top:10px;
+}
+
+.user button:hover {
+    color:#00B5BC;
+    background-color: white;
+    border:2px solid #00B5BC;
+}
+
+.perso {
+    display:flex;
+    flex-direction: column;
+    width: fit-content;
+    margin-left:50%;
+    transform: translateX(-50%);
+}
+
+.perso button {
+    margin:0;
+}
+
+.perso p,
+.perso label {
+    margin:0;
+    font-size: 1.5rem;
+    white-space: nowrap;
+}
+
+.perso > .pers {
+    justify-content: space-around;
+    margin-bottom:10px;
+}
+
+.ddiv > * {
+    position:absolute;
+}
+
+.ddiv {
+    width:150px;
+    height:10px;
+    margin-bottom:30px;
+}
+
+.ddiv label {
+    left:0;
+}
+
+.ddiv:not(label) {
+    margin-left:140px;
+}

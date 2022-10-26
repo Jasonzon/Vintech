@@ -5,7 +5,7 @@ const auth = require("../utils/auth")
 const bcrypt = require("bcrypt")
 const jwtGenerator = require("../utils/jwtGenerator")
 
-router.get("/:id", async (req,res) => {
+router.get("/id/:id", async (req,res) => {
     try {
         const {id} = req.params
         const polyuser = await pool.query("SELECT polyuser_name, polyuser_role, polyuser_description, polyuser_id, polyuser_city FROM polyuser WHERE polyuser_id = $1",[id])
@@ -31,7 +31,6 @@ router.get("/mail/:id", async (req,res) => {
 })
 
 router.get("/auth", async (req,res) => {
-    console.log("OKA")
     try {
         const jwtToken = req.header("token")
         const payload = jwt.verify(jwtToken, process.env.jwtSecret)

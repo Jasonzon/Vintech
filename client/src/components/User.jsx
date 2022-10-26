@@ -1,8 +1,5 @@
 import "../styles/User.css"
 import {useState} from "react"
-import Pen from "../assets/pen.png"
-import Cross from "../assets/cross.png"
-import Tick from "../assets/tick.png"
 
 function User({user, setUser}) {
 
@@ -11,18 +8,12 @@ function User({user, setUser}) {
         setUser({})
     }
 
-    const [holder, setHolder] = useState("")
-    const [holder2, setHolder2] = useState("")
-
     const [modify, setModify] = useState(false)
-    const [inputs, setInputs] = useState({pseudo:user.polyuser_name,description:user.polyuser_description})
+    const [inputs, setInputs] = useState({pseudo:user.polyuser_name,description:user.polyuser_description,city:user.polyuser_city})
 
     async function update() {
-        if (inputs.pseudo === "") {
-            setHolder2("Entrez un pseudo")
-        }
         if (inputs.pseudo !== "") {
-            const body = {name:inputs.pseudo,description:inputs.description}
+            const body = {name:inputs.pseudo,description:inputs.description,city:inputs.city}
             const res2 = await fetch(`http://localhost:5500/polyuser/id/${user.polyuser_id}`, {
                 method: "PUT",
                 headers: {"Content-Type" : "application/json",token: localStorage.token},
@@ -35,19 +26,54 @@ function User({user, setUser}) {
     }
 
     return (
-        <div className="uze">
+        <div className="user">
             <div className="connection">
                 <h1>Mon compte</h1>
-                <button onClick={() => logout()}>Se déconnecter</button>
             </div>
             <div className="perso">
-                {modify ? <img title="annuler" onClick={() => {setModify(false);setInputs({pseudo:user.polyuser_name,description:user.polyuser_description})}} src={Cross} alt="cross" width="50" height="50"/> : <img title="modifier" onClick={() => setModify(true)} src={Pen} alt="pen" width="50" height="50" />}
-                {modify ? <img title="valider" onClick={() => update()} className="img2" src={Tick} alt="tick" width="40" height="40"/> : null}
-                {modify ? <input placeholder={holder2} maxLength="20" className="user1" value={inputs.pseudo} onChange={(e) => setInputs({pseudo:e.target.value.replace(/[^a-zA-Z0-9]/g,'').replace(/\s+/g, ''), description:inputs.description})}/> : <h1>{user.polyuser_name} {"#"+("000"+user.polyuser_id).slice(-4)}</h1>}
-                <h2>{user.polyuser_mail}</h2>
-                <h3>Rôle : {user.polyuser_role}</h3>
-                {modify ? <input className="user3" maxLength="150" value={inputs.description} onChange={(e) => setInputs({pseudo:inputs.pseudo, description:e.target.value})}/> : <p>{user.polyuser_description}</p>}
+                <div className="pers">
+                    {modify ? <button title="annuler" onClick={() => {setModify(false);setInputs({pseudo:user.polyuser_name,description:user.polyuser_description})}}>Annuler</button> : <button onClick={() => setModify(true)}>Modifier</button>}
+                    {modify ? <button title="valider" onClick={() => update()}>Valider</button> : null}
+                </div>
+                <div className="ddiv">
+                    <label>Pseudo :</label>
+                    {modify ? <input maxLength="20" className="user1" value={inputs.pseudo} onChange={(e) => setInputs({pseudo:e.target.value.replace(/[^a-zA-Z0-9]/g,'').replace(/\s+/g, ''), description:inputs.description})}/> : <p>{user.polyuser_name} {"#"+("000"+user.polyuser_id).slice(-4)}</p>}
+                </div>
+                <div className="ddiv">
+                    <label>Mail :</label>
+                    <p>{user.polyuser_mail}</p>
+                </div>
+                <div className="ddiv">
+                    <label>Ville :</label>
+                    {modify ? <select required onChange={(e) => setInputs({pseudo:inputs.pseudo, city:e.target.value, description:inputs.description})} value={inputs.polytech} type="text" id="epolytech" name="epolytech">
+                        <option value="" disabled selected>Choisir une ville</option>
+                        <option className="montpellier" value="Montpellier">Montpellier</option>
+                        <option className="savoie" value="Savoie">Savoie</option>
+                        <option className="marseille" value="Marseille">Marseille</option>
+                        <option className="nice" value="Nice">Nice</option>
+                        <option className="grenoble" value="Grenoble">Grenoble</option>
+                        <option className="lyon" value="Lyon">Lyon</option>
+                        <option className="clermont" value="Clermont">Clermont</option>
+                        <option className="sorbonne" value="Sorbonne">Sorbonne</option>
+                        <option className="saclay" value="Saclay">Saclay</option>
+                        <option className="lille" value="Lille">Lille</option>
+                        <option className="nancy" value="Nancy">Nancy</option>
+                        <option className="tours" value="Tours">Tours</option>
+                        <option className="orleans" value="Orleans">Orleans</option>
+                        <option className="angers" value="Angers">Angers</option>
+                        <option className="nantes" value="Nantes">Nantes</option>
+                    </select> : <p>{user.polyuser_city}</p> }
+                </div>
+                <div className="ddiv">
+                    <label>Role :</label>
+                    <p>{user.polyuser_role}</p>
+                </div>
+                <div className="ddiv">
+                    <label>Description :</label>
+                    {modify ? <input className="user3" maxLength="150" value={inputs.description} onChange={(e) => setInputs({pseudo:inputs.pseudo, description:e.target.value})}/> : <p>{user.polyuser_description}</p>}
+                </div>
             </div>
+            <button onClick={() => logout()}>Se déconnecter</button>
         </div>
     )
 }
