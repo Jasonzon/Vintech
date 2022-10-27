@@ -62,3 +62,13 @@
 .ddiv:not(label) {
     margin-left:140px;
 }
+
+.ddiv input {
+    right:0px;
+    transform: translateY(6px);
+}
+
+.ddiv select {
+    right:25px;
+    transform: translateY(6px);
+}

@@ -21,12 +21,12 @@ function Home() {
     return (
         <div className="home">
             <div className="filter">
-                <label for="search">Rechercher</label>
+                <label>Rechercher</label>
                 <input name="search" className="search" />
             </div>
             <ul className="list">
                 {articles.map(({article_pic, article_title, article_description, created_at, article_polyuser, article_price, article_city}) => 
-                    <Article 
+                    <Article key={article_title}
                         pic={article_pic}
                         title={article_title}
                         description={article_description}

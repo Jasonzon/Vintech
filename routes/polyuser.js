@@ -84,10 +84,10 @@ router.post("/connect", async (req,res) => {
 router.put("/:id", auth, async (req,res) => {
     try {
         const {id} = req.params
-        const {name, description, city} = req.body
+        const {name, description, city, role, mail} = req.body
         const user = req.polyuser
         if (user && user.toString() === id.toString()) {
-            const updatePolyuser = await pool.query("UPDATE polyuser SET polyuser_name = $2, polyuser_description = $3, polyuser_city = $4 WHERE polyuser_id = $1 RETURNING *",[id, name, description, city])
+            const updatePolyuser = await pool.query("UPDATE polyuser SET polyuser_name = $2, polyuser_description = $3, polyuser_city = $4, polyuser_mail = $5, polyuser_role = $6 WHERE polyuser_id = $1 RETURNING *",[id, name, description, city, mail, role])
             if (updatePolyuser.rows.length === 0) {
                 return res.status(403).send("Not Authorized")
             }

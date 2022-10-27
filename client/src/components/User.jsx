@@ -13,15 +13,15 @@ function User({user, setUser}) {
 
     async function update() {
         if (inputs.pseudo !== "") {
-            const body = {name:inputs.pseudo,description:inputs.description,city:inputs.city}
-            const res2 = await fetch(`http://localhost:5500/polyuser/id/${user.polyuser_id}`, {
+            const body = {mail:user.polyuser_mail,role:user.polyuser_role,name:inputs.pseudo,description:inputs.description,city:inputs.city}
+            const res2 = await fetch(`http://localhost:5500/polyuser/${user.polyuser_id}`, {
                 method: "PUT",
                 headers: {"Content-Type" : "application/json",token: localStorage.token},
                 body:JSON.stringify(body)
             })
             const parseRes2 = await res2.json()
             setModify(false)
-            setUser({polyuser_id:parseRes2.polyuser_id,polyuser_role:parseRes2.polyuser_role,polyuser_mail:user.polyuser_mail,polyuser_description:parseRes2.polyuser_description,polyuser_name:parseRes2.polyuser_name})
+            setUser({polyuser_id:parseRes2.polyuser_id,polyuser_role:parseRes2.polyuser_role,polyuser_mail:user.polyuser_mail,polyuser_description:parseRes2.polyuser_description,polyuser_name:parseRes2.polyuser_name,polyuser_city:parseRes2.polyuser_city})
         }
     }
 
@@ -37,7 +37,7 @@ function User({user, setUser}) {
                 </div>
                 <div className="ddiv">
                     <label>Pseudo :</label>
-                    {modify ? <input maxLength="20" className="user1" value={inputs.pseudo} onChange={(e) => setInputs({pseudo:e.target.value.replace(/[^a-zA-Z0-9]/g,'').replace(/\s+/g, ''), description:inputs.description})}/> : <p>{user.polyuser_name} {"#"+("000"+user.polyuser_id).slice(-4)}</p>}
+                    {modify ? <input maxLength="20" className="user1" value={inputs.pseudo} onChange={(e) => setInputs({pseudo:e.target.value.replace(/[^a-zA-Z0-9]/g,'').replace(/\s+/g, ''), description:inputs.description, city:inputs.city})}/> : <p>{user.polyuser_name} {"#"+("000"+user.polyuser_id).slice(-4)}</p>}
                 </div>
                 <div className="ddiv">
                     <label>Mail :</label>
@@ -45,8 +45,8 @@ function User({user, setUser}) {
                 </div>
                 <div className="ddiv">
                     <label>Ville :</label>
-                    {modify ? <select required onChange={(e) => setInputs({pseudo:inputs.pseudo, city:e.target.value, description:inputs.description})} value={inputs.polytech} type="text" id="epolytech" name="epolytech">
-                        <option value="" disabled selected>Choisir une ville</option>
+                    {modify ? <select required onChange={(e) => setInputs({pseudo:inputs.pseudo, city:e.target.value, description:inputs.description})} value={inputs.city} type="text" id="epolytech" name="epolytech">
+                        <option value="" disabled>Choisir une ville</option>
                         <option className="montpellier" value="Montpellier">Montpellier</option>
                         <option className="savoie" value="Savoie">Savoie</option>
                         <option className="marseille" value="Marseille">Marseille</option>
@@ -70,10 +70,10 @@ function User({user, setUser}) {
                 </div>
                 <div className="ddiv">
                     <label>Description :</label>
-                    {modify ? <input className="user3" maxLength="150" value={inputs.description} onChange={(e) => setInputs({pseudo:inputs.pseudo, description:e.target.value})}/> : <p>{user.polyuser_description}</p>}
+                    {modify ? <input className="user3" maxLength="30" value={inputs.description} onChange={(e) => setInputs({pseudo:inputs.pseudo, description:e.target.value, city:inputs.city})}/> : <p>{user.polyuser_description}</p>}
                 </div>
             </div>
-            <button onClick={() => logout()}>Se déconnecter</button>
+            {modify ? null : <button onClick={() => logout()}>Se déconnecter</button> }
         </div>
     )
 }
