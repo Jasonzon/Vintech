@@ -15,3 +15,22 @@ code {
 button:hover {
   cursor:pointer;
 }
+
+:root {
+  --orleans:#EE981D;
+  --savoie:#EE008E;
+  --grenoble:#B89A74;
+  --nice:#C0D72D;
+  --clermont:#7FC143;
+  --lille:#EC1B3A;
+  --nantes:#FEDC00;
+  --marseille:#00AAC1;
+  --montpellier:#2184C8;
+  --tours:#9E579D;
+  --lyon:#881111;
+  --nancy:#881111;
+  --angers:#FF937C;
+  --saclay:#C8BDB7;
+  --sorbonne:#A3A0B3;
+  --basic:#00B5BC;
+}

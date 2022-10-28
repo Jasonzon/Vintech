@@ -32,8 +32,8 @@ function User({user, setUser}) {
             </div>
             <div className="perso">
                 <div className="pers">
-                    {modify ? <button title="annuler" onClick={() => {setModify(false);setInputs({pseudo:user.polyuser_name,description:user.polyuser_description})}}>Annuler</button> : <button onClick={() => setModify(true)}>Modifier</button>}
-                    {modify ? <button title="valider" onClick={() => update()}>Valider</button> : null}
+                    {modify ? <button style={user.polyuser_name ? {backgroundColor:`var(--${user.polyuser_city.toLowerCase()})`} : {backgroundColor:"var(--basic)"}} title="annuler" onClick={() => {setModify(false);setInputs({pseudo:user.polyuser_name,description:user.polyuser_description})}}>Annuler</button> : <button style={user.polyuser_name ? {backgroundColor:`var(--${user.polyuser_city.toLowerCase()})`} : {backgroundColor:"var(--basic)"}} onClick={() => setModify(true)}>Modifier</button>}
+                    {modify ? <button style={user.polyuser_name ? {backgroundColor:`var(--${user.polyuser_city.toLowerCase()})`} : {backgroundColor:"var(--basic)"}} title="valider" onClick={() => update()}>Valider</button> : null}
                 </div>
                 <div className="ddiv">
                     <label>Pseudo :</label>
@@ -46,22 +46,22 @@ function User({user, setUser}) {
                 <div className="ddiv">
                     <label>Ville :</label>
                     {modify ? <select required onChange={(e) => setInputs({pseudo:inputs.pseudo, city:e.target.value, description:inputs.description})} value={inputs.city} type="text" id="epolytech" name="epolytech">
-                        <option value="" disabled>Choisir une ville</option>
-                        <option className="montpellier" value="Montpellier">Montpellier</option>
-                        <option className="savoie" value="Savoie">Savoie</option>
-                        <option className="marseille" value="Marseille">Marseille</option>
-                        <option className="nice" value="Nice">Nice</option>
-                        <option className="grenoble" value="Grenoble">Grenoble</option>
-                        <option className="lyon" value="Lyon">Lyon</option>
-                        <option className="clermont" value="Clermont">Clermont</option>
-                        <option className="sorbonne" value="Sorbonne">Sorbonne</option>
-                        <option className="saclay" value="Saclay">Saclay</option>
-                        <option className="lille" value="Lille">Lille</option>
-                        <option className="nancy" value="Nancy">Nancy</option>
-                        <option className="tours" value="Tours">Tours</option>
-                        <option className="orleans" value="Orleans">Orleans</option>
-                        <option className="angers" value="Angers">Angers</option>
-                        <option className="nantes" value="Nantes">Nantes</option>
+                    <option value="" disabled selected>Choisir une ville</option>
+                        <option style={{backgroundColor:"var(--montpellier)"}} className="montpellier" value="Montpellier">Montpellier</option>
+                        <option style={{backgroundColor:"var(--savoie)"}} className="savoie" value="Savoie">Savoie</option>
+                        <option style={{backgroundColor:"var(--marseille)"}} className="marseille" value="Marseille">Marseille</option>
+                        <option style={{backgroundColor:"var(--nice)"}} className="nice" value="Nice">Nice</option>
+                        <option style={{backgroundColor:"var(--grenoble)"}} className="grenoble" value="Grenoble">Grenoble</option>
+                        <option style={{backgroundColor:"var(--lyon)"}} className="lyon" value="Lyon">Lyon</option>
+                        <option style={{backgroundColor:"var(--clermont)"}} className="clermont" value="Clermont">Clermont</option>
+                        <option style={{backgroundColor:"var(--sorbonne)"}} className="sorbonne" value="Sorbonne">Sorbonne</option>
+                        <option style={{backgroundColor:"var(--saclay)"}} className="saclay" value="Saclay">Saclay</option>
+                        <option style={{backgroundColor:"var(--lille)"}} className="lille" value="Lille">Lille</option>
+                        <option style={{backgroundColor:"var(--nancy)"}} className="nancy" value="Nancy">Nancy</option>
+                        <option style={{backgroundColor:"var(--tours)"}} className="tours" value="Tours">Tours</option>
+                        <option style={{backgroundColor:"var(--orleans)"}} className="orleans" value="Orleans">Orleans</option>
+                        <option style={{backgroundColor:"var(--angers)"}} className="angers" value="Angers">Angers</option>
+                        <option style={{backgroundColor:"var(--nantes)"}} className="nantes" value="Nantes">Nantes</option>
                     </select> : <p>{user.polyuser_city}</p> }
                 </div>
                 <div className="ddiv">
@@ -73,7 +73,7 @@ function User({user, setUser}) {
                     {modify ? <input className="user3" maxLength="30" value={inputs.description} onChange={(e) => setInputs({pseudo:inputs.pseudo, description:e.target.value, city:inputs.city})}/> : <p>{user.polyuser_description}</p>}
                 </div>
             </div>
-            {modify ? null : <button onClick={() => logout()}>Se déconnecter</button> }
+            {modify ? null : <button onClick={() => logout()} style={user.polyuser_name ? {backgroundColor:`var(--${user.polyuser_city.toLowerCase()})`} : {backgroundColor:"var(--basic)"}}>Se déconnecter</button> }
         </div>
     )
 }

@@ -33,7 +33,7 @@ function Main() {
 
   return (
     <Router>
-      <Header />
+      <Header user={user} setUser={setUser} />
       <Routes>
         <Route exact path="/" element={<Home user={user} setUser={setUser} />} />
         <Route path="*" element={<Error />} /> 

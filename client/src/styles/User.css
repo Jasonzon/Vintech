@@ -16,9 +16,7 @@
 }
 
 .user button:hover {
-    color:#00B5BC;
-    background-color: white;
-    border:2px solid #00B5BC;
+    scale: 110%;
 }
 
 .perso {
@@ -71,4 +69,8 @@
 .ddiv select {
     right:25px;
     transform: translateY(6px);
+}
+
+.pers {
+    display:flex;
 }

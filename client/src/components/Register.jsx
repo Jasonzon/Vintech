@@ -57,21 +57,21 @@ function Register({connection, setConnection, user, setUser}) {
                     <label>Polytech</label>
                     <select required onChange={(e) => setInputs({mail:inputs.mail, pseudo:inputs.pseudo, password:inputs.password, polytech:e.target.value})} value={inputs.polytech} type="text" id="epolytech" name="epolytech">
                         <option value="" disabled selected>Choisir une ville</option>
-                        <option className="montpellier" value="Montpellier">Montpellier</option>
-                        <option className="savoie" value="Savoie">Savoie</option>
-                        <option className="marseille" value="Marseille">Marseille</option>
-                        <option className="nice" value="Nice">Nice</option>
-                        <option className="grenoble" value="Grenoble">Grenoble</option>
-                        <option className="lyon" value="Lyon">Lyon</option>
-                        <option className="clermont" value="Clermont">Clermont</option>
-                        <option className="sorbonne" value="Sorbonne">Sorbonne</option>
-                        <option className="saclay" value="Saclay">Saclay</option>
-                        <option className="lille" value="Lille">Lille</option>
-                        <option className="nancy" value="Nancy">Nancy</option>
-                        <option className="tours" value="Tours">Tours</option>
-                        <option className="orleans" value="Orleans">Orleans</option>
-                        <option className="angers" value="Angers">Angers</option>
-                        <option className="nantes" value="Nantes">Nantes</option>
+                        <option style={{backgroundColor:"var(--montpellier)"}} className="montpellier" value="Montpellier">Montpellier</option>
+                        <option style={{backgroundColor:"var(--savoie)"}} className="savoie" value="Savoie">Savoie</option>
+                        <option style={{backgroundColor:"var(--marseille)"}} className="marseille" value="Marseille">Marseille</option>
+                        <option style={{backgroundColor:"var(--nice)"}} className="nice" value="Nice">Nice</option>
+                        <option style={{backgroundColor:"var(--grenoble)"}} className="grenoble" value="Grenoble">Grenoble</option>
+                        <option style={{backgroundColor:"var(--lyon)"}} className="lyon" value="Lyon">Lyon</option>
+                        <option style={{backgroundColor:"var(--clermont)"}} className="clermont" value="Clermont">Clermont</option>
+                        <option style={{backgroundColor:"var(--sorbonne)"}} className="sorbonne" value="Sorbonne">Sorbonne</option>
+                        <option style={{backgroundColor:"var(--saclay)"}} className="saclay" value="Saclay">Saclay</option>
+                        <option style={{backgroundColor:"var(--lille)"}} className="lille" value="Lille">Lille</option>
+                        <option style={{backgroundColor:"var(--nancy)"}} className="nancy" value="Nancy">Nancy</option>
+                        <option style={{backgroundColor:"var(--tours)"}} className="tours" value="Tours">Tours</option>
+                        <option style={{backgroundColor:"var(--orleans)"}} className="orleans" value="Orleans">Orleans</option>
+                        <option style={{backgroundColor:"var(--angers)"}} className="angers" value="Angers">Angers</option>
+                        <option style={{backgroundColor:"var(--nantes)"}} className="nantes" value="Nantes">Nantes</option>
                     </select>
                 </div>
                 <button className="sub" type="submit" onClick={(e) => submit(e)}>S'enregistrer</button>
