@@ -4,7 +4,7 @@ import Home from "./Home"
 import Error from "./Error"
 import Profil from "./Profil"
 import Vendre from "./Vendre"
-import Notifs from "./Notifs"
+import Messages from "./Messages"
 import {useState, useEffect} from "react"
 
 function Main() {
@@ -37,7 +37,7 @@ function Main() {
       <Routes>
         <Route exact path="/" element={<Home user={user} setUser={setUser} />} />
         <Route path="*" element={<Error />} /> 
-        <Route path="/notifs" element={<Notifs user={user} setUser={setUser} />} />
+        <Route path="/messages" element={<Messages user={user} setUser={setUser} />} />
         <Route path="/profil" element={<Profil user={user} setUser={setUser} connection={connection} setConnection={setConnection} />} />
         <Route path="/vendre" element={<Vendre user={user} setUser={setUser} />} />
       </Routes>

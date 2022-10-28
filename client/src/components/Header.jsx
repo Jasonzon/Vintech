@@ -7,7 +7,7 @@ function Header({user, setUser}) {
             <Link to="/"><h1 className="title">Vintech</h1></Link>
             <nav className="nav">
                 <Link to="/vendre"><p>Vendre</p></Link>
-                <Link to="/notifs"><p>Notifs</p></Link>
+                <Link to="/messages"><p>Messages</p></Link>
                 <Link to="/profil"><p>Profil</p></Link>
             </nav>
         </div>
