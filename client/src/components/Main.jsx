@@ -5,6 +5,7 @@ import Error from "./Error"
 import Profil from "./Profil"
 import Vendre from "./Vendre"
 import Messages from "./Messages"
+import View from "./View"
 import {useState, useEffect} from "react"
 
 function Main() {
@@ -37,9 +38,10 @@ function Main() {
       <Routes>
         <Route exact path="/" element={<Home user={user} setUser={setUser} />} />
         <Route path="*" element={<Error />} /> 
-        <Route path="/messages" element={<Messages user={user} setUser={setUser} />} />
         <Route path="/profil" element={<Profil user={user} setUser={setUser} connection={connection} setConnection={setConnection} />} />
-        <Route path="/vendre" element={<Vendre user={user} setUser={setUser} />} />
+        <Route path="/messages" element={user.polyuser_name ? <Messages user={user} setUser={setUser}/> : <Error/> } />
+        <Route path="/vendre" element={user.polyuser_name ? <Vendre user={user} setUser={setUser} /> : <Error /> } />
+        <Route path="/view" element={<View user={user} setUser={setUser} /> } />
       </Routes>
     </Router>
   );

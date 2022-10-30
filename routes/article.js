@@ -14,7 +14,7 @@ router.get("/", async (req,res) => {
 router.get("/:id", async (req,res) => {
     try {
         const {id} = req.params
-        const article = await pool.query("select * from article where article_id = $1",[id])
+        const article = await pool.query("select * from article where article_id = $1 natural join polyuser",[id])
         if (article.rows.length === 0) {
             return res.status(403).send("Not Authorized")
         }

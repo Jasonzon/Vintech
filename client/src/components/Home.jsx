@@ -25,7 +25,7 @@ function Home() {
                 <input name="search" className="search" />
             </div>
             <ul className="list">
-                {articles.map(({article_pic, article_title, article_description, created_at, article_polyuser, article_price, article_city}) => 
+                {articles.map(({article_id,article_pic, article_title, article_description, created_at, article_polyuser, article_price, article_city}) => 
                     <Article key={article_title}
                         pic={article_pic}
                         title={article_title}
@@ -34,6 +34,7 @@ function Home() {
                         polyuser={article_polyuser}
                         price={article_price}
                         city={article_city}
+                        id={article_id}
                     />
                 )}
             </ul>

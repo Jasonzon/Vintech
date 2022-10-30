@@ -6,8 +6,8 @@ function Header({user, setUser}) {
         <div className="header" style={user.polyuser_name ? {backgroundColor:`var(--${user.polyuser_city.toLowerCase()})`} : {backgroundColor:"var(--basic)"}}>
             <Link to="/"><h1 className="title">Vintech</h1></Link>
             <nav className="nav">
-                <Link to="/vendre"><p>Vendre</p></Link>
-                <Link to="/messages"><p>Messages</p></Link>
+                {user.polyuser_name ? <Link to="/vendre"><p>Vendre</p></Link> : null }
+                {user.polyuser_name ? <Link to="/messages"><p>Messages</p></Link> : null }
                 <Link to="/profil"><p>Profil</p></Link>
             </nav>
         </div>

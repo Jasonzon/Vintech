@@ -12,6 +12,16 @@ router.get("/:from&:to&:bottom&:top", async (req,res) => {
     }
 })
 
+router.get("/conv/:id", async (req,res) => {
+    try {
+        const {id} = req.params
+        const allConvs = await pool.query("select distinct polyuser_name from dm d natural join polyuser where d.dm_from = $1 or d.dm_to = $1",[id])
+        res.json(allConvs.rows)
+    } catch (err) {
+        console.log(err.message)
+    }
+})
+
 router.post("/", async (req,res) => {
     try {
         const {message,from,to} = req.body
