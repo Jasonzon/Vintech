@@ -1,5 +1,6 @@
 import "../styles/User.css"
-import {useState} from "react"
+import {useState, useEffect} from "react"
+import Article from "./Article"
 
 function User({user, setUser}) {
 
@@ -8,8 +9,21 @@ function User({user, setUser}) {
         setUser({})
     }
 
+    const [articles, setArticles] = useState([])
     const [modify, setModify] = useState(false)
     const [inputs, setInputs] = useState({pseudo:user.polyuser_name,description:user.polyuser_description,city:user.polyuser_city})
+
+    async function getArticles() {
+        const res = await fetch(`http://localhost:5500/article/polyuser/${user.polyuser_id}`, {
+            method: "GET"
+        })
+        const parseRes = await res.json()
+        setArticles(parseRes)
+    }
+
+    useEffect(() => {
+        getArticles()
+    },[])
 
     async function update() {
         if (inputs.pseudo !== "") {
@@ -26,55 +40,100 @@ function User({user, setUser}) {
     }
 
     return (
+
         <div className="user">
-            <div className="connection">
-                <h1>Mon compte</h1>
-            </div>
-            <div className="perso">
-                <div className="pers">
-                    {modify ? <button style={user.polyuser_name ? {backgroundColor:`var(--${user.polyuser_city.toLowerCase()})`} : {backgroundColor:"var(--basic)"}} title="annuler" onClick={() => {setModify(false);setInputs({pseudo:user.polyuser_name,description:user.polyuser_description})}}>Annuler</button> : <button style={user.polyuser_name ? {backgroundColor:`var(--${user.polyuser_city.toLowerCase()})`} : {backgroundColor:"var(--basic)"}} onClick={() => setModify(true)}>Modifier</button>}
-                    {modify ? <button style={user.polyuser_name ? {backgroundColor:`var(--${user.polyuser_city.toLowerCase()})`} : {backgroundColor:"var(--basic)"}} title="valider" onClick={() => update()}>Valider</button> : null}
+            <div className="left">
+                <div className="top">
+                    <img alt="photo de profil" src="https://media.istockphoto.com/vectors/default-avatar-profile-icon-vector-vector-id1337144146?b=1&k=20&m=1337144146&s=170667a&w=0&h=ys-RUZbXzQ-FQdLstHeWshI4ViJuEhyEa4AzQNQ0rFI=" />
+                    <div className="role">
+                        <p>Role :</p>
+                        <p>{user.polyuser_role}</p>
+                    </div>
                 </div>
-                <div className="ddiv">
-                    <label>Pseudo :</label>
-                    {modify ? <input maxLength="20" className="user1" value={inputs.pseudo} onChange={(e) => setInputs({pseudo:e.target.value.replace(/[^a-zA-Z0-9]/g,'').replace(/\s+/g, ''), description:inputs.description, city:inputs.city})}/> : <p>{user.polyuser_name} {"#"+("000"+user.polyuser_id).slice(-4)}</p>}
-                </div>
-                <div className="ddiv">
-                    <label>Mail :</label>
-                    <p>{user.polyuser_mail}</p>
-                </div>
-                <div className="ddiv">
-                    <label>Ville :</label>
-                    {modify ? <select required onChange={(e) => setInputs({pseudo:inputs.pseudo, city:e.target.value, description:inputs.description})} value={inputs.city} type="text" id="epolytech" name="epolytech">
-                    <option value="" disabled selected>Choisir une ville</option>
-                        <option style={{backgroundColor:"var(--montpellier)"}} className="montpellier" value="Montpellier">Montpellier</option>
-                        <option style={{backgroundColor:"var(--savoie)"}} className="savoie" value="Savoie">Savoie</option>
-                        <option style={{backgroundColor:"var(--marseille)"}} className="marseille" value="Marseille">Marseille</option>
-                        <option style={{backgroundColor:"var(--nice)"}} className="nice" value="Nice">Nice</option>
-                        <option style={{backgroundColor:"var(--grenoble)"}} className="grenoble" value="Grenoble">Grenoble</option>
-                        <option style={{backgroundColor:"var(--lyon)"}} className="lyon" value="Lyon">Lyon</option>
-                        <option style={{backgroundColor:"var(--clermont)"}} className="clermont" value="Clermont">Clermont</option>
-                        <option style={{backgroundColor:"var(--sorbonne)"}} className="sorbonne" value="Sorbonne">Sorbonne</option>
-                        <option style={{backgroundColor:"var(--saclay)"}} className="saclay" value="Saclay">Saclay</option>
-                        <option style={{backgroundColor:"var(--lille)"}} className="lille" value="Lille">Lille</option>
-                        <option style={{backgroundColor:"var(--nancy)"}} className="nancy" value="Nancy">Nancy</option>
-                        <option style={{backgroundColor:"var(--tours)"}} className="tours" value="Tours">Tours</option>
-                        <option style={{backgroundColor:"var(--orleans)"}} className="orleans" value="Orleans">Orleans</option>
-                        <option style={{backgroundColor:"var(--angers)"}} className="angers" value="Angers">Angers</option>
-                        <option style={{backgroundColor:"var(--nantes)"}} className="nantes" value="Nantes">Nantes</option>
-                    </select> : <p>{user.polyuser_city}</p> }
-                </div>
-                <div className="ddiv">
-                    <label>Role :</label>
-                    <p>{user.polyuser_role}</p>
-                </div>
-                <div className="ddiv">
-                    <label>Description :</label>
-                    {modify ? <input className="user3" maxLength="30" value={inputs.description} onChange={(e) => setInputs({pseudo:inputs.pseudo, description:e.target.value, city:inputs.city})}/> : <p>{user.polyuser_description}</p>}
+                <div className="bottom">
+                    <div className="modify">
+                        {modify ? <button style={{backgroundColor:`var(--${user.polyuser_city.toLowerCase()})`}} title="annuler" onClick={() => {setModify(false);setInputs({pseudo:user.polyuser_name,description:user.polyuser_description,city:user.polyuser_city})}}>Annuler</button> : <button style={{backgroundColor:`var(--${user.polyuser_city.toLowerCase()})`}} onClick={() => setModify(true)}>Modifier</button>}
+                        {modify ? <button style={{backgroundColor:`var(--${user.polyuser_city.toLowerCase()})`}} title="valider" onClick={() => update()}>Valider</button> : null}
+                    </div>
+                    <div className="pseudo">
+                        <h3>{user.polyuser_name}</h3>
+                        <div className="bar1"></div>
+                        <div className="bar2"></div>
+                    </div>
+                    <div className="ville">
+                    <h3>{user.polyuser_city}</h3>
+                        <div className="bar1"></div>
+                        <div className="bar2"></div>
+                    </div>
+                    <div className="description">
+                    <h3>{user.polyuser_description}</h3>
+                        <div className="bar1"></div>
+                        <div className="bar2"></div>
+                    </div>
                 </div>
             </div>
-            {modify ? null : <button onClick={() => logout()} style={user.polyuser_name ? {backgroundColor:`var(--${user.polyuser_city.toLowerCase()})`} : {backgroundColor:"var(--basic)"}}>Se déconnecter</button> }
+            <div className="cut"></div>
+            <div className="right">
+                <h2>Articles en vente</h2>
+                <ul className="articles">
+                    {articles.map(({article_id,article_pic, article_title, article_description, created_at, article_polyuser, article_price, article_city}) => 
+                        <Article key={article_title}
+                            pic={article_pic}
+                            title={article_title}
+                            description={article_description}
+                            created_at={created_at}
+                            polyuser={article_polyuser}
+                            price={article_price}
+                            city={article_city}
+                            id={article_id}
+                        />
+                    )}
+                </ul>
+            </div>
+
         </div>
+
+
+        //         <div className="ddiv">
+        //             <label>Pseudo :</label>
+        //             {modify ? <input maxLength="20" className="user1" value={inputs.pseudo} onChange={(e) => setInputs({pseudo:e.target.value.replace(/[^a-zA-Z0-9]/g,'').replace(/\s+/g, ''), description:inputs.description, city:inputs.city})}/> : <p>{user.polyuser_name} {"#"+("000"+user.polyuser_id).slice(-4)}</p>}
+        //         </div>
+        //         <div className="ddiv">
+        //             <label>Mail :</label>
+        //             <p>{user.polyuser_mail}</p>
+        //         </div>
+        //         <div className="ddiv">
+        //             <label>Ville :</label>
+        //             {modify ? <select required onChange={(e) => setInputs({pseudo:inputs.pseudo, city:e.target.value, description:inputs.description})} value={inputs.city} type="text" id="epolytech" name="epolytech">
+        //             <option value="" disabled selected>Choisir une ville</option>
+        //                 <option style={{backgroundColor:"var(--montpellier)"}} className="montpellier" value="Montpellier">Montpellier</option>
+        //                 <option style={{backgroundColor:"var(--savoie)"}} className="savoie" value="Savoie">Savoie</option>
+        //                 <option style={{backgroundColor:"var(--marseille)"}} className="marseille" value="Marseille">Marseille</option>
+        //                 <option style={{backgroundColor:"var(--nice)"}} className="nice" value="Nice">Nice</option>
+        //                 <option style={{backgroundColor:"var(--grenoble)"}} className="grenoble" value="Grenoble">Grenoble</option>
+        //                 <option style={{backgroundColor:"var(--lyon)"}} className="lyon" value="Lyon">Lyon</option>
+        //                 <option style={{backgroundColor:"var(--clermont)"}} className="clermont" value="Clermont">Clermont</option>
+        //                 <option style={{backgroundColor:"var(--sorbonne)"}} className="sorbonne" value="Sorbonne">Sorbonne</option>
+        //                 <option style={{backgroundColor:"var(--saclay)"}} className="saclay" value="Saclay">Saclay</option>
+        //                 <option style={{backgroundColor:"var(--lille)"}} className="lille" value="Lille">Lille</option>
+        //                 <option style={{backgroundColor:"var(--nancy)"}} className="nancy" value="Nancy">Nancy</option>
+        //                 <option style={{backgroundColor:"var(--tours)"}} className="tours" value="Tours">Tours</option>
+        //                 <option style={{backgroundColor:"var(--orleans)"}} className="orleans" value="Orleans">Orleans</option>
+        //                 <option style={{backgroundColor:"var(--angers)"}} className="angers" value="Angers">Angers</option>
+        //                 <option style={{backgroundColor:"var(--nantes)"}} className="nantes" value="Nantes">Nantes</option>
+        //             </select> : <p>{user.polyuser_city}</p> }
+        //         </div>
+        //         <div className="ddiv">
+        //             <label>Role :</label>
+        //             <p>{user.polyuser_role}</p>
+        //         </div>
+        //         <div className="ddiv">
+        //             <label>Description :</label>
+        //             {modify ? <input className="user3" maxLength="30" value={inputs.description} onChange={(e) => setInputs({pseudo:inputs.pseudo, description:e.target.value, city:inputs.city})}/> : <p>{user.polyuser_description}</p>}
+        //         </div>
+        //     </div>
+        //     {modify ? null : <button onClick={() => logout()} style={user.polyuser_name ? {backgroundColor:`var(--${user.polyuser_city.toLowerCase()})`} : {backgroundColor:"var(--basic)"}}>Se déconnecter</button> }
+        // </div>
     )
 }
 
