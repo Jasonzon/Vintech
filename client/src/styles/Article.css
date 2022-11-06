@@ -9,11 +9,14 @@
 
 .article {
     padding:.5rem;
-    border:5px solid;
-    border-radius:15px;
-    width:fit-content;
+    background-color: #d3d3d366;
+    min-width:fit-content;
     text-align: center;
     cursor:pointer;
+}
+
+.article:hover {
+    background-color: #d3d3d3;
 }
 
 a {
