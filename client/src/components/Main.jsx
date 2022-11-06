@@ -37,11 +37,11 @@ function Main() {
       <Header user={user} setUser={setUser} />
       <Routes>
         <Route exact path="/" element={<Home user={user} setUser={setUser} />} />
+        <Route exact path="/profil" element={<Profil user={user} setUser={setUser} connection={connection} setConnection={setConnection} />} />
+        <Route exact path="/messages" element={user.polyuser_name ? <Messages user={user} setUser={setUser}/> : <Error/> } />
+        <Route exact path="/vendre" element={user.polyuser_name ? <Vendre user={user} setUser={setUser} /> : <Error /> } />
+        <Route exact path="/view/:id" element={<View user={user} setUser={setUser} /> } />
         <Route path="*" element={<Error />} /> 
-        <Route path="/profil" element={<Profil user={user} setUser={setUser} connection={connection} setConnection={setConnection} />} />
-        <Route path="/messages" element={user.polyuser_name ? <Messages user={user} setUser={setUser}/> : <Error/> } />
-        <Route path="/vendre" element={user.polyuser_name ? <Vendre user={user} setUser={setUser} /> : <Error /> } />
-        <Route path="/view" element={<View user={user} setUser={setUser} /> } />
       </Routes>
     </Router>
   );

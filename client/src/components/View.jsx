@@ -1,8 +1,9 @@
 import "../styles/View.css"
 import {useState, useEffect} from "react"
-import {useParams} from "react-router"
+import {useParams} from "react-router-dom"
 
 function View() {
+    const {id} = useParams()
 
     const [view, setView] = useState({
         article_title:"",
@@ -15,7 +16,6 @@ function View() {
     })
 
     async function getView() {
-        const {id} = useParams()
         const res = await fetch(`http://localhost:5500/article/${id}`,{
             method: "GET"
         })
@@ -29,12 +29,16 @@ function View() {
 
     return (
         <div className="view">
-            <h1>{view.article_title}</h1>
-            <h2>{view.article_price}</h2>
-            <img src={view.article_pic} alt={view.article_title}/>
-            <p>{view.article_description}</p>
-            <h3>{view.polyuser_name}</h3>
-            <h3>{view.article_city}</h3>
+            <div className="view-left">
+                <h1>{view.article_title}</h1>
+                <h2>{view.article_price}</h2>
+                <p>{view.article_description}</p>
+                <h3>{view.polyuser_name}</h3>
+                <h3>{view.article_city}</h3>
+            </div>
+            <div className="view-right">
+                <img src={view.article_pic} alt={view.article_title}/>
+            </div>
         </div>
     )
 }

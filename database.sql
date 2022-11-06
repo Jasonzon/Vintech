@@ -12,6 +12,13 @@ create table article(
     article_city varchar(255) not null
 );
 
+create table category(
+    category_id serial primary key,
+    category_name varchar(255) not null,
+    category_article int not null,
+    foreign key (category_article) references article(article_id)
+);
+
 create table polyuser(
     polyuser_id SERIAL PRIMARY KEY,
     polyuser_name VARCHAR(255) NOT NULL,
@@ -19,7 +26,8 @@ create table polyuser(
     polyuser_mail VARCHAR(255) UNIQUE NOT NULL,
     polyuser_password VARCHAR(255) NOT NULL,
     polyuser_description VARCHAR(500) NOT NULL DEFAULT 'pas de description',
-    polyuser_city varchar(255) not null
+    polyuser_city varchar(255) not null,
+    polyuser_pic varchar(255) not null
 );
 
 create table fav(
