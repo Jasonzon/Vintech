@@ -2,7 +2,7 @@
     margin-left:50%;
     text-align: center;
     transform: translateX(-50%);
-    margin-top:8%;
+    margin-top:3%;
     font-size: 1.9rem;
 }
 
@@ -40,4 +40,17 @@
 
 .vendre button:hover {
     scale: 110%;
+}
+
+.vendre ul {
+    list-style: none;
+    font-size: 1.2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap:5px;
+}
+
+.vendre label,
+.vendre input {
+    cursor: pointer;
 }

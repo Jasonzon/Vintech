@@ -1,6 +1,23 @@
 import "../styles/Vendre.css"
+import {categories} from "../utils/categories"
+import {useState} from "react"
 
 function Vendre({user, setUser}) {
+
+    const [selectedCategories, setSelectedCategories] = useState([])
+
+    function addCategory(category) {
+        if (categories.includes(category)) {
+            setSelectedCategories(selectedCategories.filter((catego) => catego !== category))
+        }
+        else if (selectedCategories.length < 3) {
+            setSelectedCategories([category, ...selectedCategories])
+        }
+    }
+
+    async function post() {
+
+    }
 
     return (
         <div className="vendre">
@@ -22,7 +39,16 @@ function Vendre({user, setUser}) {
                     <label>Description</label>
                     <input type="text"></input>
                 </div>
-                <button type="submit" style={{backgroundColor:`var(--${user.polyuser_city.toLowerCase()})`}}>Valider</button>
+                <h3>Categories (3max) {selectedCategories}</h3>
+                <ul>
+                    {categories.map((category) => 
+                        <li key={category}>
+                            <label for={category} >{category}</label>
+                            <input checked={selectedCategories.includes(category)} id={category} type="checkbox" onClick={() => addCategory(category)} />
+                        </li>
+                    )}
+                </ul>
+                <button type="submit" style={{backgroundColor:`var(--${user.polyuser_city.toLowerCase()})`}} onClick={() => post()} >Valider</button>
             </form>
         </div>
     )

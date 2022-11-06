@@ -22,6 +22,8 @@ app.use("/dm", require("./routes/dm"))
 
 app.use("/polyuser", require("./routes/polyuser"))
 
+app.use("/category", require("./routes/category"))
+
 /*
 app.get("/*", (req,res) => {
     res.sendFile(path.join(__dirname,"client/build/index.html"))
