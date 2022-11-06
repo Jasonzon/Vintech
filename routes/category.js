@@ -30,3 +30,5 @@ router.delete("/:id", async (req, res) => {
         console.log(err.message)
     }
 })
+
+module.exports = router

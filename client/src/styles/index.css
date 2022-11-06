@@ -34,3 +34,9 @@ button:hover {
   --sorbonne:#A3A0B3;
   --basic:#00B5BC;
 }
+
+html {
+  width:100vw;
+  height:100vh;
+  margin:0;
+}

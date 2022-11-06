@@ -1,5 +1,5 @@
 .article > img {
-    height:7.5rem;
+    max-height: 85%;
 }
 
 .article > h3 {
@@ -10,7 +10,8 @@
 .article {
     padding:.5rem;
     background-color: #d3d3d366;
-    min-width:fit-content;
+    width:90%;
+    height:30%;
     text-align: center;
     cursor:pointer;
 }

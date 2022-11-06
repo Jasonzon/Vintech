@@ -7,7 +7,7 @@ function Vendre({user, setUser}) {
     const [selectedCategories, setSelectedCategories] = useState([])
 
     function addCategory(category) {
-        if (categories.includes(category)) {
+        if (selectedCategories.includes(category)) {
             setSelectedCategories(selectedCategories.filter((catego) => catego !== category))
         }
         else if (selectedCategories.length < 3) {
@@ -39,7 +39,7 @@ function Vendre({user, setUser}) {
                     <label>Description</label>
                     <input type="text"></input>
                 </div>
-                <h3>Categories (3max) {selectedCategories}</h3>
+                <h3>Categories (3max)</h3>
                 <ul>
                     {categories.map((category) => 
                         <li key={category}>
