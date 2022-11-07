@@ -5,19 +5,20 @@
 
 .list {
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    gap:1rem;
-    max-width: 100rem;
+    grid-template-columns: auto auto auto auto auto;
+    width: 100%;
+    margin:1rem 2rem;
+    padding:0;
 }
 
 @media (max-width: 800px) {
     .list {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: auto auto auto;
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 550px) {
     .list {
-        grid-template-columns: 1fr;
+        grid-template-columns: auto auto;
     }
 }

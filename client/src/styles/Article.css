@@ -1,5 +1,6 @@
 .article > img {
-    max-height: 85%;
+    max-height:80%;
+    max-width: 80%;
 }
 
 .article > h3 {
@@ -8,12 +9,13 @@
 }
 
 .article {
-    padding:.5rem;
+    padding:1.5rem;
     background-color: #d3d3d366;
-    width:90%;
-    height:30%;
     text-align: center;
     cursor:pointer;
+    width:70%;
+    font-size:.8rem;
+    margin:1rem;
 }
 
 .article:hover {
