@@ -34,18 +34,7 @@ button:hover {
   --basic:#00B5BC;
 }
 
-html
-{
-    overflow: hidden;
-}
-
-body
-{
+body {
     margin: 0;
     box-sizing: border-box;
-}
-
-html, body
-{
-    width: fit-content;
 }

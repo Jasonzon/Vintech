@@ -1,14 +1,15 @@
 import "../styles/Article.css"
 import {useNavigate} from "react-router-dom"
+import Card from 'react-bootstrap/Card'
 
 function Article({id,pic, title, description, created_at, price, city, polyuser}) {
     const navigate = useNavigate()
     return (
-            <div onClick={() => navigate(`/view/${id}`)} className="article" style={{color:`var(--${city.toLowerCase()})`}}>
-                <h3>{title}</h3>
-                <img alt={title} src={pic} />
-                <h3>{price}</h3>
-            </div>
+        <Card style={{ width: '18rem' }}>
+                <Card.Img variant="top" src={pic} />
+                <Card.Title>{title}</Card.Title>
+                <Card.Text>{price}</Card.Text>
+        </Card>
     )
 }
 
