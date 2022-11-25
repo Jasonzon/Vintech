@@ -6,6 +6,7 @@ function Profil({user, setUser, connection, setConnection}) {
 
     return (
         <div className="profil">
+            {console.log("connection",connection)}
             {!user.polyuser_name ? <> {connection ? 
                 <Connection connection={connection} setConnection={setConnection} user={user} setUser={setUser}/> : 
                 <Register connection={connection} setConnection={setConnection} user={user} setUser={setUser} /> } </> : 
