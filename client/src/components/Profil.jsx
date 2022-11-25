@@ -1,4 +1,3 @@
-import "../styles/Profil.css"
 import Connection from "./Connection"
 import Register from "./Register"
 import User from "./User"

@@ -1,4 +1,3 @@
-import "../styles/User.css"
 import {useState, useEffect} from "react"
 import Article from "./Article"
 

@@ -1,4 +1,3 @@
-import "../styles/Messages.css"
 import {useState, useEffect} from "react"
 
 function Messages({user, setUser}) {

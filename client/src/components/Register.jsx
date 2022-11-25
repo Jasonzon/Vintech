@@ -1,5 +1,6 @@
-import "../styles/Register.css"
+
 import {useState} from "react"
+
 function Register({connection, setConnection, user, setUser}) {
 
     const [inputs, setInputs] = useState({

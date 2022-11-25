@@ -1,4 +1,3 @@
-import "../styles/Connection.css"
 import {useState} from "react"
 
 function Connection({connection, setConnection, user, setUser}) {

@@ -1,4 +1,3 @@
-import "../styles/Header.css"
 import {Link} from "react-router-dom"
 
 function Header({user, setUser}) {

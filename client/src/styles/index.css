@@ -1,40 +1,25 @@
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-button:hover {
-  cursor:pointer;
-}
-
-:root {
-  --orleans:#EE981D;
-  --savoie:#EE008E;
-  --grenoble:#B89A74;
-  --nice:#C0D72D;
-  --clermont:#7FC143;
-  --lille:#EC1B3A;
-  --nantes:#FEDC00;
-  --marseille:#00AAC1;
-  --montpellier:#2184C8;
-  --tours:#9E579D;
-  --lyon:#881111;
-  --nancy:#881111;
-  --angers:#FF937C;
-  --saclay:#C8BDB7;
-  --sorbonne:#A3A0B3;
-  --basic:#00B5BC;
-}
-
-body {
     margin: 0;
-    box-sizing: border-box;
-}
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    width:100%;
+    height:100%;
+    margin:0;
+    font-family: "coolvetica";
+    overflow-x: hidden;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+  
+  html {
+    width:100%;
+    height:100%;
+    margin:0;
+    overflow-x: hidden;
+  }

@@ -1,4 +1,3 @@
-import "../styles/Vendre.css"
 import {categories} from "../utils/categories"
 import {useState} from "react"
 
