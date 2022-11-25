@@ -11,7 +11,10 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
+const theme = createTheme();
 
 function Main() {
 
@@ -38,18 +41,21 @@ function Main() {
   },[])
 
   return (
-    <Router>
-      <Header user={user} setUser={setUser} />
-      <Routes>
-        <Route exact path="/" element={<Home user={user} setUser={setUser} />} />
-        <Route exact path="/profil" element={<Profil user={user} setUser={setUser} connection={connection} setConnection={setConnection} />} />
-        <Route exact path="/messages" element={user.polyuser_name ? <Messages user={user} setUser={setUser}/> : <Error/> } />
-        <Route exact path="/vendre" element={user.polyuser_name ? <Vendre user={user} setUser={setUser} /> : <Error /> } />
-        <Route exact path="/view/:id" element={<View user={user} setUser={setUser} /> } />
-        <Route path="*" element={<Error />} /> 
-      </Routes>
-    </Router>
-  );
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <Header user={user} setUser={setUser} />
+        <Routes>
+          <Route exact path="/" element={<Home user={user} setUser={setUser} />} />
+          <Route exact path="/profil" element={<Profil user={user} setUser={setUser} connection={connection} setConnection={setConnection} />} />
+          <Route exact path="/messages" element={user.polyuser_name ? <Messages user={user} setUser={setUser}/> : <Error/> } />
+          <Route exact path="/vendre" element={user.polyuser_name ? <Vendre user={user} setUser={setUser} /> : <Error /> } />
+          <Route exact path="/view/:id" element={<View user={user} setUser={setUser} /> } />
+          <Route path="*" element={<Error />} /> 
+        </Routes>
+      </Router>
+    </ThemeProvider>
+  )
 }
 
 export default Main;
