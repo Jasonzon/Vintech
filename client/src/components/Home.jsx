@@ -33,11 +33,11 @@ function Home() {
   return (
     <Container>
       <TextField style={{marginTop:"1rem"}} value={search} onChange={(e) => setSearch(e.target.value)} id="outlined-basic" label="Rechercher" variant="outlined" />
-      <Container sx={{ py: 8 }} maxWidth="md">
+      <Container sx={{ py: 8 }} alignItems="center">
         <Grid container spacing={2}>
           {articles.filter((article) => article.article_title.toLowerCase().includes(search.toLowerCase()) || article.article_description.toLowerCase().includes(search.toLowerCase())).map(({article_id,article_pic, article_title, article_description, created_at, article_polyuser, article_price, article_city,polyuser_name},index) => (
             <Grid item key={index} xs={12} sm={6} md={4}>
-              <Card sx={{maxWidth: 345, cursor:"pointer",":hover": {boxShadow: 20}}} onClick={() => navigate(`/view/${article_id}`)}>
+              <Card sx={{borderRadius:"10px",maxWidth: 345, cursor:"pointer",":hover": {boxShadow: 20}}} onClick={() => navigate(`/view/${article_id}`)}>
                 <CardHeader avatar={<Avatar sx={{ bgcolor: `var(--${article_city.toLowerCase()})` }} aria-label="recipe">{polyuser_name.slice(0,1).toUpperCase()}</Avatar>} title={article_title} subheader={article_price}/>
                 <CardMedia height="194" component="img" image={article_pic} alt={article_title}/>
                 <CardContent sx={{ flexGrow: 1 }}>

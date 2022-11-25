@@ -39,8 +39,8 @@ function View({user, setUser}) {
   },[])
 
   return (
-    <Container sx={{ py: 3 }}>
-      <Card sx={{ maxWidth: 500 }}>
+    <Container sx={{ py: 3 }} style={{ display:'flex', justifyContent:'center' }}>
+      <Card sx={{ maxWidth: 500}}>
         <CardHeader avatar={<Avatar sx={{ bgcolor:  `var(--${view.article_city.toLowerCase()})`  }} aria-label="recipe">{view.polyuser_name.slice(0,1).toUpperCase()}</Avatar>}
         title={view.article_title}
         subheader={view.article_price}
