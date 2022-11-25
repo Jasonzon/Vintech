@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -22,11 +22,13 @@ function Header({user, setUser}) {
     setAnchorElNav(null);
   };
 
+  const navigate = useNavigate()
+
   return (
     <AppBar position="static" style={user.polyuser_name ? {backgroundColor:`var(--${user.polyuser_city.toLowerCase()})`} : {backgroundColor:"var(--basic)"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography variant="h4" noWrap component="a" href="/" sx={{mr: 2,display: { xs: 'none', md: 'flex' },fontFamily: 'monospace',fontWeight: 700,color: 'inherit',textDecoration: 'none'}}>Vintech</Typography>
+          <Typography variant="h4" noWrap sx={{mr: 2,display: {cursor:"pointer", xs: 'none', md: 'flex' },fontFamily: 'monospace',fontWeight: 700,color: 'inherit',textDecoration: 'none'}} onClick={() => navigate("/")}>Vintech</Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenNavMenu} color="inherit">
                 <MenuIcon />
@@ -62,7 +64,7 @@ function Header({user, setUser}) {
                 </MenuItem>
             </Menu>
           </Box>
-          <Typography variant="h4" noWrap component="a" href="" sx={{mr: 2,display: { xs: 'flex', md: 'none' },flexGrow: 1,fontFamily: 'monospace',fontWeight: 700,color: 'inherit',textDecoration: 'none',}}>Vintech</Typography>
+          <Typography variant="h4" noWrap sx={{mr: 2,display: {cursor:"pointer", xs: 'flex', md: 'none' },flexGrow: 1,fontFamily: 'monospace',fontWeight: 700,color: 'inherit',textDecoration: 'none',}} onClick={() => navigate("/")}>Vintech</Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {user.polyuser_id ? <Link to="/vendre"><Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>Vendre</Button></Link> : null}
               {user.polyuser_id ? <Link to="/messages"><Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>Messages</Button></Link> : null}

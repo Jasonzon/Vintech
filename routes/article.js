@@ -3,7 +3,7 @@ const pool = require("../db")
 
 router.get("/", async (req,res) => {
     try {
-        const allArticles = await pool.query("select * from article")
+        const allArticles = await pool.query("select * from article inner join polyuser on (polyuser_id = article_polyuser)")
         res.json(allArticles.rows)
     }
     catch (err) {
@@ -14,9 +14,9 @@ router.get("/", async (req,res) => {
 router.get("/:id", async (req,res) => {
     try {
         const {id} = req.params
-        const article = await pool.query("select * from article natural join polyuser where article_id = $1",[id])
+        const article = await pool.query("select * from article inner join polyuser on (polyuser_id = article_polyuser) where article_id = $1",[id])
         if (article.rows.length === 0) {
-            return res.status(403).send("Not Authorized")
+            return res.json({}).send("Not Authorized").status(403)
         }
         else {
             res.json(article.rows[0])

@@ -1,45 +1,67 @@
 import {useState, useEffect} from "react"
 import {useParams} from "react-router-dom"
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import Avatar from '@mui/material/Avatar';
+import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import Container from "@mui/material/Container"
 
-function View() {
-    const {id} = useParams()
+function View({user, setUser}) {
 
-    const [view, setView] = useState({
-        article_title:"",
-        article_pic:"",
-        article_description:"",
-        article_city:"",
-        article_price:"",
-        created_at:"",
-        polyuser_name:""
-    })
+  const {id} = useParams()
 
-    async function getView() {
-        const res = await fetch(`http://localhost:5500/article/${id}`,{
-            method: "GET"
-        })
-        const parseRes = await res.json()
-        setView(parseRes)
-    }
+  const [view, setView] = useState({
+      article_title:"",
+      article_pic:"",
+      article_description:"",
+      article_city:"",
+      article_price:"",
+      created_at:"",
+      polyuser_name:""
+  })
 
-    useEffect(() => {
-        getView()
-    },[])
+  async function getView() {
+      const res = await fetch(`http://localhost:5500/article/${id}`,{
+          method: "GET"
+      })
+      const parseRes = await res.json()
+      console.log(parseRes)
+      setView(parseRes)
+  }
 
-    return (
-        <div className="view">
-            <div className="view-left">
-                <h1>{view.article_title}</h1>
-                <h2>{view.article_price}</h2>
-                <p>{view.article_description}</p>
-                <h3>{view.polyuser_name}</h3>
-                <h3>{view.article_city}</h3>
-            </div>
-            <div className="view-right">
-                <img src={view.article_pic} alt={view.article_title}/>
-            </div>
-        </div>
-    )
+  useEffect(() => {
+      getView()
+  },[])
+
+  return (
+    <Container sx={{ py: 3 }}>
+      <Card sx={{ maxWidth: 500 }}>
+        <CardHeader avatar={<Avatar sx={{ bgcolor:  `var(--${view.article_city.toLowerCase()})`  }} aria-label="recipe">{view.polyuser_name.slice(0,1).toUpperCase()}</Avatar>}
+        title={view.article_title}
+        subheader={view.article_price}
+        />
+        <CardMedia
+          component="img"
+          height="300"
+          image={view.article_pic}
+          alt={view.article_title}
+        />
+        <CardContent>
+          <Typography variant="body2" color="text.secondary">{view.article_description}</Typography>
+        </CardContent>
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+        </CardActions>
+      </Card>
+    </Container>
+  )
 }
 
 export default View
