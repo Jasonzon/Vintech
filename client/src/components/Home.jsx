@@ -11,23 +11,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
+import TextField from "@mui/material/TextField";
 
 /*
-function Home() {
-
-    const [articles,setArticles] = useState([])
-
-    useEffect(() => {
-        getArticles()
-    },[])
-
-    async function getArticles() {
-        const res = await fetch("http://localhost:5500/article", {
-            method: "GET"
-        })
-        const parseRes = await res.json()
-        setArticles(parseRes)
-    }
 
     return (
         <div className="home">
@@ -61,69 +47,44 @@ export default Home
 
 */
   
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  
 function Home() {
+
+  const [articles,setArticles] = useState([])
+
+  const [search, setSearch] = useState("")
+
+  useEffect(() => {
+      getArticles()
+  },[])
+
+  async function getArticles() {
+      const res = await fetch("http://localhost:5500/article", {
+          method: "GET"
+      })
+      const parseRes = await res.json()
+      setArticles(parseRes)
+  }
+
   return (
-    <Box>
-      <main>
-        <Container sx={{ py: 8 }} maxWidth="md">
-          {/* End hero unit */}
-          <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card
-                  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                >
-                  <CardMedia
-                    component="img"
-                    sx={{
-                      // 16:9
-                      pt: '56.25%',
-                    }}
-                    image="https://source.unsplash.com/random"
-                    alt="random"
-                  />
-                  <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Heading
-                    </Typography>
-                    <Typography>
-                      This is a media card. You can use this section to describe the
-                      content.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </main>
-      <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="text.secondary"
-          component="p"
-        >
-          Something here to give the footer a purpose!
-        </Typography>
-        <Typography variant="body2" color="text.secondary" align="center">
-          {'Copyright © '}
-          <Link color="inherit" href="https://mui.com/">Your Website</Link>{' '}
-          {new Date().getFullYear()}
-          {'.'}
-        </Typography>
-      </Box>
-    </Box>
-  );
+    <Container>
+      <TextField style={{marginTop:"1rem"}} value={search} onChange={(e) => setSearch(e.target.value)} id="outlined-basic" label="Rechercher" variant="outlined" />
+      <Container sx={{ py: 8 }} maxWidth="md">
+        <Grid container spacing={2}>
+          {articles.filter((article) => article.article_title.toLowerCase().includes(search.toLowerCase()) || article.article_description.toLowerCase().includes(search.toLowerCase())).map(({article_id,article_pic, article_title, article_description, created_at, article_polyuser, article_price, article_city},index) => (
+            <Grid item key={index} xs={12} sm={6} md={4}>
+              <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column'}}>
+                <CardMedia component="img" image={article_pic} alt={article_title} style={{objectFit: "contain",maxHeight:200}}/>
+                <CardContent sx={{ flexGrow: 1 }}>
+                  <Typography gutterBottom variant="h5" component="h2">{article_title}</Typography>
+                  <Typography>{article_description}</Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </Container>
+  )
 }
 
 export default Home
