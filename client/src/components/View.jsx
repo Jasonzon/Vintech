@@ -47,7 +47,7 @@ function View({user, setUser}) {
         />
         <CardMedia
           component="img"
-          height="300"
+          widht="100%"
           image={view.article_pic}
           alt={view.article_title}
         />

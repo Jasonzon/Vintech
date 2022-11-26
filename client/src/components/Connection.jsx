@@ -16,31 +16,20 @@ function Connection({user, setUser, connection, setConnection}) {
         password:""
     })
 
-    const [holder1, setHolder1] = useState("")
-    const [holder2, setHolder2] = useState("")
-
-    async function submit(e) {
-        e.preventDefault()
+    async function submit() {
         const body = {mail:inputs.mail,password:inputs.password}
-        const res = await fetch(`http://localhost:5500/polyuser/connect`, {
+        const res = await fetch("http://localhost:5500/polyuser/connect", {
             method: "POST",
             headers: {"Content-Type" : "application/json"},
             body:JSON.stringify(body)
         })
+        console.log(res)
         const parseRes = await res.json()
         if (parseRes.rows.length !== 0) {
             if (parseRes.token) {
                 localStorage.setItem("token",parseRes.token)
                 setUser(parseRes.rows[0])
             }
-            else {
-                e.target.form[1].value=""
-                setHolder2("Mot de passe incorrect")
-            }
-        }
-        else {
-            e.target.form[0].value=""
-            setHolder1("Mail non trouvé")
         }
     }
 
@@ -76,6 +65,8 @@ function Connection({user, setUser, connection, setConnection}) {
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            value = {inputs.mail}
+                            onChange={(e) => setInputs({...inputs,mail:e.target.value})}
                         />
                         <TextField
                             margin="normal"
@@ -86,8 +77,10 @@ function Connection({user, setUser, connection, setConnection}) {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            value = {inputs.password}
+                            onChange={(e) => setInputs({...inputs,password:e.target.value})}
                         />
-                        <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>Se connecter</Button>
+                        <Button onClick={(e) => submit()} fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>Se connecter</Button>
                         <Grid container>
                             <Grid item xs>
                                 <Link style={{cursor:"pointer"}} variant="body2">Forgot password?</Link>

@@ -70,7 +70,7 @@ router.post("/connect", async (req,res) => {
                 res.json({rows:newPolyuser.rows,token})
             }
             else {
-                return res.status(403).send({rows:[]})
+                return res.json({rows:[]}).send("Erreur").status(403)
             }
         }
         else {

@@ -23,10 +23,7 @@ function Register({user, setUser, connection, setConnection}) {
         polytech:""
     })
 
-    const [holder, setHolder] = useState("")
-
-    async function submit(e) {
-        e.preventDefault()
+    async function submit() {
         const res = await fetch(`http://localhost:5500/polyuser/mail/${inputs.mail}`, {
             method: "GET"
         })
@@ -41,10 +38,6 @@ function Register({user, setUser, connection, setConnection}) {
             const parseRes2 = await res2.json()
             localStorage.setItem("token",parseRes2.token)
             setUser(parseRes2.rows[0])
-        }
-        else {
-            e.target.form[0].value=""
-            setHolder("Mail déjà utilisé")
         }
     }
 
@@ -81,6 +74,20 @@ function Register({user, setUser, connection, setConnection}) {
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            value={inputs.mail}
+                            onChange={(e) => setInputs({...inputs,mail:e.target.value})}
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="^seudo"
+                            label="Pseudo"
+                            name="pseudo"
+                            autoComplete="pseudo"
+                            autoFocus
+                            value={inputs.pseudo}
+                            onChange={(e) => setInputs({...inputs,pseudo:e.target.value})}
                         />
                         <TextField
                             margin="normal"
@@ -91,6 +98,8 @@ function Register({user, setUser, connection, setConnection}) {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            value={inputs.password}
+                            onChange={(e) => setInputs({...inputs,password:e.target.value})}
                         />
                         <FormControl fullWidth margin="normal">
                             <InputLabel id="demo-simple-select-label" shrink={true} >Ville</InputLabel>
@@ -99,13 +108,15 @@ function Register({user, setUser, connection, setConnection}) {
                                 id="demo-simple-select"
                                 label="Ville"
                                 notched={true}
+                                value={inputs.polytech}
+                                onChange={(e) => setInputs({...inputs,polytech:e.target.value})}
                             >
                                 {["Marseille","Montpellier","Grenoble","Nice","Clermont","Lyon","Savoie","Tours","Orleans","Lille","Nancy","Nantes","Angers","Sorbonne","Saclay"].map((ville) => 
                                     <MenuItem style={{backgroundColor:`var(--${ville.toLowerCase()})`}} value={ville}>{ville}</MenuItem>
                                 )}
                             </Select>
                         </FormControl>
-                        <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>S'enregistrer</Button>
+                        <Button onClick={() => submit()} fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>S'enregistrer</Button>
                         <Grid container>
                             <Grid item>
                                 <Link style={{cursor:"pointer"}} onClick={() => setConnection(true)} variant="body2">Déja un compte ? Connecte-toi</Link>
