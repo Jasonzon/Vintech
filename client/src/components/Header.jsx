@@ -65,7 +65,7 @@ function Header({user, setUser}) {
             </Menu>
           </Box>
           <Typography variant="h4" noWrap sx={{mr: 2,display: {cursor:"pointer", xs: 'flex', md: 'none' },flexGrow: 1,fontFamily: 'monospace',fontWeight: 700,color: 'inherit',textDecoration: 'none',}} onClick={() => navigate("/")}>Vintech</Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', justifyContent:"flex-end" } }}>
               {user.polyuser_id ? <Link to="/vendre"><Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>Vendre</Button></Link> : null}
               {user.polyuser_id ? <Link to="/messages"><Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>Messages</Button></Link> : null}
               <Link to="/profil"><Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block'}}>Profil</Button></Link>

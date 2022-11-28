@@ -1,6 +1,17 @@
 import {useState, useEffect} from "react"
 import Article from "./Article"
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 
+
+/*
 function User({user, setUser}) {
 
     function logout() {
@@ -103,6 +114,48 @@ function User({user, setUser}) {
                 </ul>
             </div>
         </div>
+    )
+}
+*/
+
+function User({user, setUser}) {
+    return (
+        <Container component="main" maxWidth="xs">
+            <Box
+                sx={{
+                    marginTop: 8,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+            >
+                <Avatar sx={{ bgcolor: `var(--${user.polyuser_city.toLowerCase()})` }} aria-label="recipe">{user.polyuser_name.slice(0,1).toUpperCase()}</Avatar>
+                <Typography component="h1" variant="h5">{user.polyuser_name}</Typography>
+                <Box component="form" noValidate sx={{ mt: 1 }}>
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email Address"
+                        name="email"
+                        autoComplete="email"
+                        autoFocus
+                    />
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                    />
+                    <Button fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>Modifier</Button>
+                </Box>
+            </Box>
+        </Container>
     )
 }
 
