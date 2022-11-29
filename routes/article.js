@@ -29,7 +29,7 @@ router.get("/:id", async (req,res) => {
 router.get("/polyuser/:id", async (req,res) => {
     try {
         const {id} = req.params
-        const allArticles = await pool.query("select * from article where article_polyuser = $1",[id])
+        const allArticles = await pool.query("select * from article inner join polyuser on (polyuser_id = article_polyuser) where article_polyuser = $1",[id])
         res.json(allArticles.rows)
     } catch (err) {
         console.log(err.message)

@@ -1,14 +1,11 @@
 import {useState, useEffect} from "react"
-import Article from "./Article"
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Home from "./Home"
 
 
 /*
@@ -120,7 +117,7 @@ function User({user, setUser}) {
 
 function User({user, setUser}) {
     return (
-        <Container component="main" maxWidth="xs">
+        <Container component="main">
             <Box
                 sx={{
                     marginTop: 8,
@@ -155,6 +152,7 @@ function User({user, setUser}) {
                     <Button fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>Modifier</Button>
                 </Box>
             </Box>
+            <Home prop="User" user={user} setUser={setUser}/>
         </Container>
     )
 }

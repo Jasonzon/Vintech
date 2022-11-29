@@ -10,7 +10,7 @@ import {useNavigate} from "react-router-dom"
 import CardHeader from '@mui/material/CardHeader';
 import Avatar from '@mui/material/Avatar';
   
-function Home() {
+function Home({prop, user, setUser}) {
 
   const navigate = useNavigate()
 
@@ -22,8 +22,10 @@ function Home() {
       getArticles()
   },[])
 
+  const url = prop === "Home" ? "http://localhost:5500/article" : prop === "User" ? `http://localhost:5500/article/polyuser/${user.polyuser_id}` : ""
+
   async function getArticles() {
-      const res = await fetch("http://localhost:5500/article", {
+      const res = await fetch(url, {
           method: "GET"
       })
       const parseRes = await res.json()
@@ -32,8 +34,8 @@ function Home() {
 
   return (
     <Container>
-      <TextField style={{marginTop:"1rem"}} value={search} onChange={(e) => setSearch(e.target.value)} id="outlined-basic" label="Rechercher" variant="outlined" />
-      <Container sx={{ py: 8 }} alignItems="center">
+      <TextField fullWidth style={{marginTop:"1rem"}} value={search} onChange={(e) => setSearch(e.target.value)} id="outlined-basic" label="Rechercher" variant="outlined" />
+      <Container sx={{ py: 4 }} alignItems="center">
         <Grid container spacing={2}>
           {articles.filter((article) => article.article_title.toLowerCase().includes(search.toLowerCase()) || article.article_description.toLowerCase().includes(search.toLowerCase())).map(({article_id,article_pic, article_title, article_description, created_at, article_polyuser, article_price, article_city,polyuser_name},index) => (
             <Grid item key={index} xs={12} sm={6} md={4}>
