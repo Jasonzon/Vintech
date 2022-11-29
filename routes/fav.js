@@ -22,6 +22,16 @@ router.get("/article/:id", async (req,res) => {
     }
 })
 
+router.get("/polyuser/:id", async (req, res) => {
+    try {
+        const {id} = req.params
+        const allFavs = await pool.query("select * from fav inner join article on (fav_article = article_id) where fav_polyuser = $1",[id])
+        res.json(allFavs.rows)
+    } catch (err) {
+        console.log(err.message)
+    }
+})
+
 router.post("/", async (req,res) => {
     try {
         const {article,polyuser} = req.body

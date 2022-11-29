@@ -22,7 +22,7 @@ function Home({prop, user, setUser}) {
       getArticles()
   },[])
 
-  const url = prop === "Home" ? "http://localhost:5500/article" : prop === "User" ? `http://localhost:5500/article/polyuser/${user.polyuser_id}` : ""
+  const url = prop === "Home" ? "http://localhost:5500/article" : prop === "User" ? `http://localhost:5500/article/polyuser/${user.polyuser_id}` : `http://localhost:5500/fav/polyuser/${user.polyuser_id}`
 
   async function getArticles() {
       const res = await fetch(url, {
