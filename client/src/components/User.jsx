@@ -61,8 +61,11 @@ function User({user, setUser}) {
                             <Typography variant="h6">{user.polyuser_mail}</Typography>
                             <Typography variant="body2">{user.polyuser_description}</Typography>
                         </CardContent>
-                        <CardActions disableSpacing>
-                            <Button onClick={() => setModify(true)} fullWidth variant="contained" sx={{ mb: 2 }}>Modifier</Button>
+                        <CardActions>
+                            <Container sx={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
+                                <Button onClick={() => setModify(true)} variant="contained" sx={{ mb: 2 }}>Modifier</Button>
+                                <Button onClick={() => logout()} variant="contained" sx={{ mb: 2 }}>Déconnexion</Button>
+                            </Container>
                         </CardActions>
                     </Card>  
                     :
