@@ -59,6 +59,10 @@ function Header({user, setUser}) {
                 <MenuItem onClick={handleCloseNavMenu}>
                     <Link to="/messages"><Typography textAlign="center">Messages</Typography></Link>
                 </MenuItem> : null }
+                {user.polyuser_name ? 
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Link to="/favoris"><Typography textAlign="center">Favoris</Typography></Link>
+                </MenuItem> : null }
                 <MenuItem onClick={handleCloseNavMenu}>
                     <Link to="/profil"><Typography textAlign="center">Profil</Typography></Link>
                 </MenuItem>
@@ -68,6 +72,7 @@ function Header({user, setUser}) {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', justifyContent:"flex-end" } }}>
               {user.polyuser_id ? <Link to="/vendre"><Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>Vendre</Button></Link> : null}
               {user.polyuser_id ? <Link to="/messages"><Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>Messages</Button></Link> : null}
+              {user.polyuser_id ? <Link to="/favoris"><Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>Favoris</Button></Link> : null}
               <Link to="/profil"><Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block'}}>Profil</Button></Link>
           </Box>
         </Toolbar>

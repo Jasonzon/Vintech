@@ -13,6 +13,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import Favoris from "./Favoris"
 
 const theme = createTheme();
 
@@ -51,6 +52,7 @@ function Main() {
           <Route exact path="/messages" element={user.polyuser_name ? <Messages user={user} setUser={setUser}/> : <Error/> } />
           <Route exact path="/vendre" element={user.polyuser_name ? <Vendre user={user} setUser={setUser} /> : <Error /> } />
           <Route exact path="/view/:id" element={<View user={user} setUser={setUser} /> } />
+          <Route exact path="/favoris" element={user.polyuser_name ? <Favoris user={user} setUser={setUser} /> : <Error />} />
           <Route path="*" element={<Error />} /> 
         </Routes>
       </Router>
