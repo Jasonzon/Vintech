@@ -68,7 +68,7 @@ function View({user, setUser}) {
   }
 
   async function dislike() {
-    const res = await fetch(`http://localhost:5500/fav/${id}`, {
+    const res = await fetch(`http://localhost:5500/fav/${id}/${user.polyuser_id}`, {
       method: "DELETE"
     })
     const parseRes = await res.json()

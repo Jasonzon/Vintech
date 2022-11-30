@@ -25,7 +25,7 @@ router.get("/article/:id", async (req,res) => {
 router.get("/polyuser/:id", async (req, res) => {
     try {
         const {id} = req.params
-        const allFavs = await pool.query("select * from fav inner join article on (fav_article = article_id) where fav_polyuser = $1",[id])
+        const allFavs = await pool.query("select * from fav inner join article on (fav_article = article_id) inner join polyuser on (fav_polyuser = polyuser_id) where fav_polyuser = $1",[id])
         res.json(allFavs.rows)
     } catch (err) {
         console.log(err.message)
@@ -45,16 +45,16 @@ router.get("/get/:article/:polyuser", async (req, res) => {
 router.post("/", async (req,res) => {
     try {
         const {article,polyuser} = req.body
-        const newFav = await pool.query("insert into fav (fav_polyuser, fav_article) values ($1, $2) returning *",[article,polyuser])
+        const newFav = await pool.query("insert into fav (fav_polyuser, fav_article) values ($1, $2) returning *",[polyuser,article])
         res.json(newFav.rows[0])
     } catch (err) {
         console.log(err.message)
     }
 })
-router.delete("/:id", async (req,res) => {
+router.delete("/:article/:polyuser", async (req,res) => {
     try {
-        const {id} = req.params
-        const deleteFav = await pool.query("delete from fav where fav_id = $1",[id])
+        const {article,polyuser} = req.params
+        const deleteFav = await pool.query("delete from fav where fav_article = $1 and fav_polyuser = $2",[article,polyuser])
         res.json({})
     } catch (err) {
         console.log(err.message)
